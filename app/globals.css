@@ -46,10 +46,10 @@ body {
   background-image:
     linear-gradient(var(--page-overlay), var(--page-overlay)),
     url("/gnss-cityscape-page.png");
-  background-position: center bottom;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-position: center, center top;
+  background-size: cover, auto 100vh;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
   color: var(--text);
   font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 15px;
