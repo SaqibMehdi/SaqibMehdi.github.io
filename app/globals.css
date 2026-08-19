@@ -180,48 +180,6 @@ video {
   font-size: 15px;
 }
 
-.signal-legend {
-  margin: -3px 0 20px;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 400;
-}
-
-.signal-legend li {
-  margin: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.signal-swatch {
-  width: 31px;
-  height: 0;
-  display: inline-block;
-  border-top-width: 2px;
-}
-
-.signal-los {
-  border-top-style: solid;
-  border-top-color: #2aa7bd;
-}
-
-.signal-reflection {
-  border-top-style: dashed;
-  border-top-color: #d85f6b;
-}
-
-.signal-diffraction {
-  border-top-style: dotted;
-  border-top-color: #7aaa58;
-}
-
 .biography {
   min-height: 250px;
 }

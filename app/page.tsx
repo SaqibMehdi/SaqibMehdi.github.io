@@ -210,27 +210,6 @@ export default function Home() {
             .
           </p>
 
-          <ul className="signal-legend" aria-label="GNSS propagation legend">
-            <li>
-              <span className="signal-swatch signal-los" aria-hidden="true" />
-              LOS
-            </li>
-            <li>
-              <span
-                className="signal-swatch signal-reflection"
-                aria-hidden="true"
-              />
-              Reflection
-            </li>
-            <li>
-              <span
-                className="signal-swatch signal-diffraction"
-                aria-hidden="true"
-              />
-              Diffraction
-            </li>
-          </ul>
-
           <div className="biography">
             <img
               className="portrait"
