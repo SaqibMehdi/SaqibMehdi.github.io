@@ -53,8 +53,9 @@ const news = [
 
 const publications = [
   {
-    image: "/gnss-raylab-poster.jpg",
-    imageAlt: "GNSS RayLab urban propagation analysis interface",
+    image: "/ray-tracing-multipath-classification-cn0-plot.png",
+    imageAlt:
+      "Core concept linking crowdsourced urban GNSS, 3D ray tracing, multipath mitigation, PPP, and tropospheric estimation",
     title:
       "Ray-Tracing-Based Multipath Classification and Adaptive Satellite Selection for Improved Tropospheric Estimation",
     authors: "Saqib Mehdi, Mingda Ye, Guohao Zhang, and Witold Rohm",
