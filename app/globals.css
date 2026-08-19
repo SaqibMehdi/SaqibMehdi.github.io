@@ -11,6 +11,7 @@
   --link: #2698ba;
   --link-hover: #44b7d9;
   --media-bg: #2f2f2f;
+  --page-overlay: rgba(47, 49, 51, 0.82);
   --container: 820px;
   color-scheme: dark;
 }
@@ -25,6 +26,7 @@
   --link: #157b9b;
   --link-hover: #0b617c;
   --media-bg: #eeeeee;
+  --page-overlay: rgba(255, 255, 255, 0.92);
   color-scheme: light;
 }
 
@@ -40,7 +42,14 @@ html {
 
 body {
   margin: 0;
-  background: var(--page-bg);
+  background-color: var(--page-bg);
+  background-image:
+    linear-gradient(var(--page-overlay), var(--page-overlay)),
+    url("/gnss-cityscape-page.png");
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: var(--text);
   font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 15px;
@@ -153,6 +162,10 @@ video {
   padding: 50px 0 90px;
 }
 
+.hero-panel {
+  margin: 0 0 26px;
+}
+
 .intro h1 {
   margin: 0;
   font-size: 39px;
@@ -165,6 +178,48 @@ video {
   margin: 4px 0 20px;
   color: var(--muted);
   font-size: 15px;
+}
+
+.signal-legend {
+  margin: -3px 0 20px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.signal-legend li {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.signal-swatch {
+  width: 31px;
+  height: 0;
+  display: inline-block;
+  border-top-width: 2px;
+}
+
+.signal-los {
+  border-top-style: solid;
+  border-top-color: #2aa7bd;
+}
+
+.signal-reflection {
+  border-top-style: dashed;
+  border-top-color: #d85f6b;
+}
+
+.signal-diffraction {
+  border-top-style: dotted;
+  border-top-color: #7aaa58;
 }
 
 .biography {
@@ -192,38 +247,56 @@ video {
   background: var(--media-bg);
 }
 
+.hero-panel .portrait {
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+}
+
 .contact-note {
   margin: 14px 0 0;
 }
 
 .institution-panel {
-  margin: 22px 0 2px;
-  padding: 18px 14px 16px;
-  border: 1px solid #d6d6d6;
-  background: #ffffff;
+  margin: 24px 0 2px;
+  padding: 22px 2px 14px;
+  border: 0;
+  border-top: 1px solid var(--line);
+  background: transparent;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px 14px;
+  justify-items: center;
+  align-items: start;
+  gap: 24px 18px;
 }
 
 .institution {
   min-width: 0;
-  color: #777777;
+  color: var(--muted);
   text-align: center;
 }
 
 .institution-logo {
-  height: 66px;
-  margin-bottom: 8px;
+  width: 100%;
+  height: 84px;
+  margin-bottom: 10px;
+  padding: 0 6px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .institution-logo img {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 84px;
   object-fit: contain;
+}
+
+.institution-logo img.logo-upwr {
+  width: 100%;
+  max-height: none;
 }
 
 .institution strong,
@@ -233,15 +306,15 @@ video {
 }
 
 .institution strong {
-  color: #777777;
-  font-size: 11px;
+  color: var(--text);
+  font-size: 11.5px;
   font-weight: 600;
 }
 
 .institution span {
   margin-top: 2px;
-  color: #999999;
-  font-size: 10px;
+  color: var(--subtle);
+  font-size: 10.5px;
   font-weight: 500;
 }
 
@@ -528,6 +601,7 @@ footer {
 
   .institution-panel {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 20px;
   }
 
   .work-row,
@@ -565,6 +639,10 @@ footer {
   .portrait {
     width: 126px;
     height: 170px;
+  }
+
+  .institution-logo {
+    height: 76px;
   }
 
   .news-item {
@@ -617,10 +695,33 @@ footer {
 
   body {
     font-size: 11pt;
+    background: #ffffff;
   }
 
   .page-container {
     width: 100%;
     padding: 0;
+  }
+
+  .hero-panel {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    color: #111111;
+  }
+
+  .hero-panel .position,
+  .hero-panel .contact-note {
+    color: #333333;
+  }
+
+  .hero-panel a {
+    color: #0b617c;
+  }
+
+  .institution-panel {
+    border-top-color: #cccccc;
   }
 }

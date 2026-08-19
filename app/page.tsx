@@ -200,6 +200,7 @@ export default function Home() {
 
       <main className="page-container" id="home">
         <section className="intro">
+          <div className="hero-panel">
           <h1>Saqib Mehdi</h1>
           <p className="position">
             PhD Researcher at the{" "}
@@ -208,6 +209,27 @@ export default function Home() {
             </a>
             .
           </p>
+
+          <ul className="signal-legend" aria-label="GNSS propagation legend">
+            <li>
+              <span className="signal-swatch signal-los" aria-hidden="true" />
+              LOS
+            </li>
+            <li>
+              <span
+                className="signal-swatch signal-reflection"
+                aria-hidden="true"
+              />
+              Reflection
+            </li>
+            <li>
+              <span
+                className="signal-swatch signal-diffraction"
+                aria-hidden="true"
+              />
+              Diffraction
+            </li>
+          </ul>
 
           <div className="biography">
             <img
@@ -251,53 +273,70 @@ export default function Home() {
             </a>
             .
           </p>
+          </div>
 
           <div className="institution-panel" aria-label="Academic institutions and research visits">
             {[
               {
                 logo: "/logos/upwr.png",
+                logoDark: "/logos/upwr.png",
+                logoClass: "logo-upwr",
                 name: "Wrocław University of Environmental and Life Sciences",
                 role: "PhD Researcher",
                 date: "2022–present",
               },
               {
                 logo: "/logos/uwm.png",
+                logoDark: "/logos/uwm.png",
+                logoClass: "logo-uwm",
                 name: "University of Warmia and Mazury",
                 role: "Research Visit",
                 date: "Sep 2025",
               },
               {
                 logo: "/logos/polyu.jpg",
+                logoDark: "/logos/polyu.jpg",
+                logoClass: "logo-polyu",
                 name: "The Hong Kong Polytechnic University",
                 role: "Research Visit",
                 date: "Jul–Aug 2025",
               },
               {
-                logo: "/logos/stuttgart.png",
+                logo: "/logos/stuttgart-official.png",
+                logoDark: "/logos/stuttgart-official-dark.png",
+                logoClass: "logo-stuttgart",
                 name: "University of Stuttgart",
                 role: "Research Visit",
                 date: "Aug 2024",
               },
               {
-                logo: "/logos/wat.png",
+                logo: "/logos/wat-emblem.png",
+                logoDark: "/logos/wat-emblem.png",
+                logoClass: "logo-wat",
                 name: "Military University of Technology",
                 role: "Simulator Training",
                 date: "Apr 2024",
               },
               {
-                logo: "/logos/oradea.png",
+                logo: "/logos/oradea-official.png",
+                logoDark: "/logos/oradea-official.png",
+                logoClass: "logo-oradea",
                 name: "University of Oradea",
                 role: "Erasmus+ Programme",
                 date: "Jun 2024",
               },
               {
-                logo: "/logos/ist.jpg",
+                logo: "/logos/ist-transparent.png",
+                logoDark: "/logos/ist-transparent.png",
+                logoClass: "logo-ist",
                 name: "Institute of Space Technology",
                 role: "MSc · Research Intern",
                 date: "2018–2022",
               },
               {
-                logo: "/logos/punjab.png",
+                logo: "/logos/punjab-official.png",
+                logoDark: "/logos/punjab-official.png",
+                logoClass: "logo-punjab",
                 name: "University of the Punjab",
                 role: "BSc Physics",
                 date: "2014–2018",
@@ -305,7 +344,11 @@ export default function Home() {
             ].map((institution) => (
               <div className="institution" key={institution.name}>
                 <div className="institution-logo">
-                  <img src={institution.logo} alt={`${institution.name} logo`} />
+                  <img
+                    className={institution.logoClass}
+                    src={lightTheme ? institution.logo : institution.logoDark}
+                    alt={`${institution.name} logo`}
+                  />
                 </div>
                 <strong>{institution.role}</strong>
                 <span>{institution.date}</span>
