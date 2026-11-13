@@ -13,9 +13,8 @@ test("exports the academic CV as a complete static page", async () => {
   assert.match(html, /GNSS RayLab/i);
   assert.match(html, /23 October 2026/i);
   assert.match(html, /id="visitors"/i);
+  assert.match(html, /Loading visitor map/i);
   assert.match(html, /mapmyvisitors\.com\/web\/1c9gj/i);
-  assert.match(html, /mapmyvisitors\.com\/map\.png\?cl=f8dfdf/i);
-  assert.match(html, /co=0c0d0d/i);
   assert.match(html, /id="experience"/i);
   assert.match(html, /id="teaching"/i);
   assert.match(html, /https:\/\/saqibmehdi\.github\.io\/og\.png/i);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const dynamic = "force-static";
 
@@ -142,20 +142,45 @@ function SectionTitle({ id, children }: { id: string; children: React.ReactNode 
 }
 
 function VisitorMap() {
+  const widgetRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = widgetRef.current;
+    if (!container) return;
+
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.id = "mapmyvisitors";
+    script.src =
+      "https://mapmyvisitors.com/map.js?d=frCz6YNhI-4H0fhFtN1FDLd5_6d-zk9jVzq4RmPVFwc&cl=ffffff&w=a";
+    script.async = true;
+
+    container.replaceChildren(script);
+
+    return () => {
+      container.replaceChildren();
+    };
+  }, []);
+
   return (
-    <a
-      className="visitor-widget"
-      href="https://mapmyvisitors.com/web/1c9gj"
-      title="Visit tracker"
-      target="_blank"
-      rel="noreferrer"
-    >
-      <img
-        src="https://mapmyvisitors.com/map.png?cl=f8dfdf&w=a&t=tt&d=frCz6YNhI-4H0fhFtN1FDLd5_6d-zk9jVzq4RmPVFwc&co=0c0d0d&ct=808080"
-        alt="Map showing approximate countries of website visitors"
-        loading="lazy"
-      />
-    </a>
+    <>
+      <div className="visitor-widget" ref={widgetRef}>
+        <span className="visitor-loading">Loading visitor map…</span>
+      </div>
+      <noscript>
+        <a
+          href="https://mapmyvisitors.com/web/1c9gj"
+          title="Visit tracker"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img
+            src="https://mapmyvisitors.com/map.png?d=frCz6YNhI-4H0fhFtN1FDLd5_6d-zk9jVzq4RmPVFwc&cl=ffffff"
+            alt="Map showing approximate countries of website visitors"
+          />
+        </a>
+      </noscript>
+    </>
   );
 }
 

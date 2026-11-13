@@ -569,17 +569,24 @@ p {
 }
 
 .visitor-widget {
+  min-height: 300px;
   overflow: hidden;
-  display: block;
-  border-radius: 6px;
-  background: #0c0d0d;
+  display: grid;
+  place-items: center;
 }
 
-.visitor-widget img {
-  height: auto;
-  display: block;
+.visitor-widget img,
+.visitor-widget iframe,
+.visitor-widget canvas,
+.visitor-widget object,
+.visitor-widget .mapmyvisitors-map-control {
   width: 100% !important;
   max-width: 100% !important;
+}
+
+.visitor-loading {
+  color: var(--subtle);
+  font-size: 12px;
 }
 
 .visitor-note {
@@ -842,6 +849,10 @@ footer {
 
   .visitor-map-card {
     padding: 14px;
+  }
+
+  .visitor-widget {
+    min-height: 230px;
   }
 
   .ip-card-grid {
