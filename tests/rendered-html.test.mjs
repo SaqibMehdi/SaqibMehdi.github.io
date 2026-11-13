@@ -2,14 +2,19 @@ import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
-const root = new URL("../", import.meta.url);
-
 test("exports the academic CV as a complete static page", async () => {
   const html = await readFile(new URL("../dist/client/index.html", import.meta.url), "utf8");
 
   assert.match(html, /<title>Saqib Mehdi \| GNSS &amp; Urban Atmospheric Sensing<\/title>/i);
   assert.match(html, /<h1>Saqib Mehdi<\/h1>/i);
   assert.match(html, /id="publications"/i);
+  assert.match(html, /id="software"/i);
+  assert.match(html, />Software &amp; Intellectual Property</i);
+  assert.match(html, /GNSS RayLab/i);
+  assert.match(html, /23 October 2026/i);
+  assert.match(html, /id="visitors"/i);
+  assert.match(html, /Loading visitor map/i);
+  assert.match(html, /mapmyvisitors\.com\/web\/1c9gj/i);
   assert.match(html, /id="experience"/i);
   assert.match(html, /id="teaching"/i);
   assert.match(html, /https:\/\/saqibmehdi\.github\.io\/og\.png/i);

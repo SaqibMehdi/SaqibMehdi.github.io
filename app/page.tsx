@@ -1,8 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+export const dynamic = "force-static";
 
 const news = [
+  {
+    date: "Oct 2026",
+    content: (
+      <>
+        Submitted the GNSS RayLab Research Result Notification Form to UPWr for
+        background intellectual property registration.
+      </>
+    ),
+  },
   {
     date: "2026",
     content: (
@@ -130,6 +141,49 @@ function SectionTitle({ id, children }: { id: string; children: React.ReactNode 
   );
 }
 
+function VisitorMap() {
+  const widgetRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = widgetRef.current;
+    if (!container) return;
+
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.id = "mapmyvisitors";
+    script.src =
+      "https://mapmyvisitors.com/map.js?d=frCz6YNhI-4H0fhFtN1FDLd5_6d-zk9jVzq4RmPVFwc&cl=ffffff&w=a";
+    script.async = true;
+
+    container.replaceChildren(script);
+
+    return () => {
+      container.replaceChildren();
+    };
+  }, []);
+
+  return (
+    <>
+      <div className="visitor-widget" ref={widgetRef}>
+        <span className="visitor-loading">Loading visitor map…</span>
+      </div>
+      <noscript>
+        <a
+          href="https://mapmyvisitors.com/web/1c9gj"
+          title="Visit tracker"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img
+            src="https://mapmyvisitors.com/map.png?d=frCz6YNhI-4H0fhFtN1FDLd5_6d-zk9jVzq4RmPVFwc&cl=ffffff"
+            alt="Map showing approximate countries of website visitors"
+          />
+        </a>
+      </noscript>
+    </>
+  );
+}
+
 export default function Home() {
   const [lightTheme, setLightTheme] = useState(false);
 
@@ -139,6 +193,9 @@ export default function Home() {
 
   return (
     <>
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
       <header className="topbar">
         <nav className="nav-container" aria-label="Primary navigation">
           <div className="profile-links" aria-label="Research profiles">
@@ -176,12 +233,13 @@ export default function Home() {
 
           <div className="site-links">
             <a className="active" href="#home">
-              home
+              about
             </a>
-            <a href="#research">research</a>
+            <a href="#selected-research">work</a>
+            <a href="#software">software &amp; IP</a>
             <a href="#publications">publications</a>
             <a href="#experience">experience</a>
-            <a href="#teaching">teaching</a>
+            <a href="#visitors">visitors</a>
             <a href="/saqib-mehdi-cv.pdf" download>
               cv
             </a>
@@ -198,19 +256,45 @@ export default function Home() {
         </nav>
       </header>
 
-      <main className="page-container" id="home">
+      <main className="page-container" id="main-content">
         <section className="intro">
-          <div className="hero-panel">
-          <h1>Saqib Mehdi</h1>
-          <p className="position">
-            PhD Researcher at the{" "}
-            <a href="https://igig.upwr.edu.pl/" target="_blank" rel="noreferrer">
-              Institute of Geodesy and Geoinformatics, UPWr
-            </a>
-            .
-          </p>
-
-          <div className="biography">
+          <div className="hero-panel" id="home">
+            <div className="hero-copy">
+              <p className="eyebrow">GNSS researcher · Wrocław, Poland</p>
+              <h1>Saqib Mehdi</h1>
+              <p className="position">
+                PhD Researcher at the{" "}
+                <a href="https://igig.upwr.edu.pl/" target="_blank" rel="noreferrer">
+                  Institute of Geodesy and Geoinformatics, UPWr
+                </a>
+              </p>
+              <p className="hero-statement">
+                I build propagation-aware methods for reliable positioning and
+                atmospheric sensing in dense cities.
+              </p>
+              <p className="hero-summary">
+                My research connects <strong>3D ray tracing</strong>, Precise Point
+                Positioning, multipath classification and urban GNSS measurements
+                to turn difficult signal environments into useful geospatial and
+                atmospheric information.
+              </p>
+              <div className="hero-actions" aria-label="Featured links">
+                <a className="primary-action" href="#software">
+                  Explore GNSS RayLab
+                </a>
+                <a className="secondary-action" href="/saqib-mehdi-cv.pdf" download>
+                  Download CV
+                </a>
+                <a className="secondary-action" href="mailto:sqbmehdi@gmail.com">
+                  Contact
+                </a>
+              </div>
+              <ul className="focus-list" aria-label="Core research areas">
+                <li>Urban GNSS &amp; PPP</li>
+                <li>3D ray tracing</li>
+                <li>Atmospheric sensing</li>
+              </ul>
+            </div>
             <img
               className="portrait"
               src="/saqib-mehdi.jpg"
@@ -218,40 +302,6 @@ export default function Home() {
               width="185"
               height="250"
             />
-            <p>
-              I am a GNSS and geodesy researcher completing my PhD at the
-              Wrocław University of Environmental and Life Sciences in Poland.
-              My work sits at the intersection of precise positioning,
-              atmospheric sensing, signal propagation and urban geospatial
-              modelling.
-            </p>
-            <p>
-              A distinctive part of my research is the use of{" "}
-              <strong>3D ray tracing</strong> to understand LOS, NLOS,
-              reflected and diffracted GNSS signals, and to integrate that
-              physical information into Precise Point Positioning for more
-              reliable positioning and Zenith Tropospheric Delay estimation in
-              dense urban environments.
-            </p>
-            <p>
-              My wider experience includes moving receivers, urban multipath
-              mitigation, satellite selection, signal simulation, Spirent GNSS
-              simulation and atmospheric–ionospheric observations. Research
-              visits to{" "}
-              <a href="#experience">PolyU, Stuttgart and other institutions</a>{" "}
-              have strengthened the link between theory, signal processing,
-              simulation and applied geospatial research.
-            </p>
-          </div>
-
-          <p className="contact-note">
-            For research collaboration, email{" "}
-            <a href="mailto:sqbmehdi@gmail.com">sqbmehdi@gmail.com</a> or{" "}
-            <a href="mailto:saqib.mehdi@upwr.edu.pl">
-              saqib.mehdi@upwr.edu.pl
-            </a>
-            .
-          </p>
           </div>
 
           <div className="institution-panel" aria-label="Academic institutions and research visits">
@@ -336,8 +386,102 @@ export default function Home() {
           </div>
         </section>
 
+        <section aria-labelledby="selected-research">
+          <SectionTitle id="selected-research">Selected Research</SectionTitle>
+          <p className="section-intro">
+            Two visual examples show how I connect city geometry, satellite
+            visibility and receiver-level analysis.
+          </p>
+
+          <article className="work-row featured-work">
+            <div className="work-media">
+              <img
+                src="/gnss-raylab-demo.webp"
+                alt="Animated GNSS RayLab simulation and analysis interface"
+                width="960"
+                height="540"
+              />
+            </div>
+            <div className="work-copy">
+              <p className="work-kicker">Featured software</p>
+              <h3>GNSS RayLab: Propagation-Aware Simulation and Analysis</h3>
+              <p className="work-meta">
+                Signal classification · satellite geometry · measurement generation
+              </p>
+              <p>
+                A simulation platform for inspecting satellite visibility,
+                propagation classes, receiver geometry and their effects on urban
+                positioning and atmospheric retrieval.
+              </p>
+              <p className="resource-links">
+                <a href="#software">IP status and details</a> ·{" "}
+                <a href="/gnss-raylab-demo.webp">Animation</a> ·{" "}
+                <a
+                  href="https://drive.google.com/file/d/1ac5n-N4xo2blFi6M8dm6DYIDD7N7vQtZ/view"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Full video
+                </a>
+              </p>
+            </div>
+          </article>
+
+          <article className="work-row">
+            <div className="work-media video-media">
+              <video
+                src="/shinjuku-coverage-sequence.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                aria-label="Shinjuku GNSS coverage sequence"
+              />
+            </div>
+            <div className="work-copy">
+              <h3>Urban GNSS Coverage and Propagation in Shinjuku</h3>
+              <p className="work-meta">3D urban ray tracing · GNSS coverage · 2026</p>
+              <p>
+                A dynamic coverage sequence showing how realistic city geometry
+                changes satellite visibility and propagation conditions along an
+                urban trajectory.
+              </p>
+              <p className="resource-links">
+                <a href="/shinjuku-coverage-sequence.mp4">Open video</a> ·{" "}
+                <a href="#future-research">Research vision</a>
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <section aria-labelledby="software">
+          <SectionTitle id="software">Software &amp; Intellectual Property</SectionTitle>
+          <article className="ip-card">
+            <div className="ip-status">IP disclosure submitted · October 2026</div>
+            <div className="ip-card-grid">
+              <div>
+                <p className="work-kicker">Creator &amp; software developer · UPWr</p>
+                <h3>GNSS RayLab</h3>
+                <p>
+                  A simulation platform for urban GNSS propagation, satellite
+                  visibility mapping and receiver measurement generation.
+                </p>
+              </div>
+              <div className="ip-detail">
+                <strong>Current IP status</strong>
+                <p>
+                  Research Result Notification Form signed and submitted to UPWr
+                  on 23 October 2026 for background intellectual property
+                  registration. Creator contribution declared: 100%.
+                </p>
+              </div>
+            </div>
+          </article>
+        </section>
+
         <section aria-labelledby="research">
-          <SectionTitle id="research">research interests</SectionTitle>
+          <SectionTitle id="research">Research Interests</SectionTitle>
           <p>
             My research interests include GNSS precise positioning, urban
             multipath and NLOS mitigation, 3D ray tracing, atmospheric remote
@@ -352,7 +496,7 @@ export default function Home() {
         </section>
 
         <section aria-labelledby="future-research">
-          <SectionTitle id="future-research">future research</SectionTitle>
+          <SectionTitle id="future-research">Future Research</SectionTitle>
           <p>
             I am extending the tools developed during my PhD toward resilient
             PNT and sensing with GNSS, LEO satellites, 6G/NTN signals, antenna
@@ -375,7 +519,7 @@ export default function Home() {
         </section>
 
         <section aria-labelledby="news">
-          <SectionTitle id="news">news</SectionTitle>
+          <SectionTitle id="news">News</SectionTitle>
           <div className="news-list">
             {news.map((item, index) => (
               <div className="news-item" key={`${item.date}-${index}`}>
@@ -386,75 +530,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section aria-labelledby="selected-research">
-          <SectionTitle id="selected-research">selected research</SectionTitle>
-
-          <article className="work-row">
-            <div className="work-media video-media">
-              <video
-                src="/shinjuku-coverage-sequence.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                controls
-                aria-label="Shinjuku GNSS coverage sequence"
-              />
-            </div>
-            <div className="work-copy">
-              <h3>Urban GNSS Coverage and Propagation in Shinjuku</h3>
-              <p className="work-meta">3D urban ray tracing · GNSS coverage · 2026</p>
-              <p>
-                A dynamic coverage sequence showing how realistic city geometry
-                changes satellite visibility and propagation conditions along
-                an urban trajectory.
-              </p>
-              <p className="resource-links">
-                [<a href="/shinjuku-coverage-sequence.mp4">Video</a>] [
-                <a href="#future-research">Research vision</a>]
-              </p>
-            </div>
-          </article>
-
-          <article className="work-row">
-            <div className="work-media">
-              <img
-                src="/gnss-raylab-demo.webp"
-                alt="Animated GNSS RayLab simulation and analysis interface"
-                width="960"
-                height="540"
-              />
-            </div>
-            <div className="work-copy">
-              <h3>GNSS RayLab: Propagation-Aware Simulation and Analysis</h3>
-              <p className="work-meta">
-                Signal classification · satellite geometry · positioning analysis
-              </p>
-              <p>
-                An experimental environment for inspecting satellite visibility,
-                propagation classes, receiver geometry and their effect on urban
-                positioning and atmospheric retrieval.
-              </p>
-              <p className="resource-links">
-                [<a href="/gnss-raylab-demo.webp">Animation</a>] [
-                <a
-                  href="https://drive.google.com/file/d/1ac5n-N4xo2blFi6M8dm6DYIDD7N7vQtZ/view"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Full video
-                </a>
-                ] [
-                <a href="https://github.com/SaqibMehdi/2D-Buildings-to-3D-KML">
-                  Code
-                </a>]
-              </p>
-            </div>
-          </article>
-        </section>
-
         <section aria-labelledby="publications">
-          <SectionTitle id="publications">selected publications</SectionTitle>
+          <SectionTitle id="publications">Selected Publications</SectionTitle>
           <p className="section-note">
             <em>
               Selected peer-reviewed journal articles. Follow each DOI for the
@@ -506,7 +583,7 @@ export default function Home() {
         </section>
 
         <section aria-labelledby="experience">
-          <SectionTitle id="experience">research experience</SectionTitle>
+          <SectionTitle id="experience">Research Experience</SectionTitle>
           <div className="text-list">
             <p>
               <strong>2022–present · PhD Researcher, UPWr</strong>
@@ -527,7 +604,7 @@ export default function Home() {
         </section>
 
         <section aria-labelledby="talks">
-          <SectionTitle id="talks">conference presentations</SectionTitle>
+          <SectionTitle id="talks">Conference Presentations</SectionTitle>
           <ul>
             <li>
               2026. Oral presentation, “Geometry-Aware PPP for Reliable GNSS
@@ -562,7 +639,7 @@ export default function Home() {
         </section>
 
         <section aria-labelledby="teaching">
-          <SectionTitle id="teaching">teaching &amp; academic service</SectionTitle>
+          <SectionTitle id="teaching">Teaching &amp; Academic Service</SectionTitle>
           <p>
             <strong>Teaching Assistant:</strong> Atmospheric Monitoring using
             GNSS Polarimetric Radio Occultation; Introduction to MATLAB
@@ -580,7 +657,7 @@ export default function Home() {
         </section>
 
         <section aria-labelledby="education">
-          <SectionTitle id="education">education</SectionTitle>
+          <SectionTitle id="education">Education</SectionTitle>
           <div className="text-list">
             <p>
               <strong>2022–present · PhD, Civil Engineering, Geodesy &amp; Transport</strong>
@@ -603,13 +680,35 @@ export default function Home() {
         </section>
 
         <section aria-labelledby="skills">
-          <SectionTitle id="skills">skills</SectionTitle>
+          <SectionTitle id="skills">Skills</SectionTitle>
           <p>
             Python (NumPy, SciPy, Pandas), MATLAB, C++, LaTeX, GNSS processing,
             Precise Point Positioning, Kalman filtering, urban ray tracing,
             multipath/NLOS classification, atmospheric and geospatial data
             analysis, and Spirent GNSS simulation.
           </p>
+        </section>
+
+        <section aria-labelledby="visitors">
+          <SectionTitle id="visitors">Visitor Map</SectionTitle>
+          <p className="section-intro">
+            An approximate, country-level view of where readers discover this
+            research portfolio.
+          </p>
+          <div className="visitor-map-card">
+            <VisitorMap />
+            <p className="visitor-note">
+              Approximate location statistics are provided by{" "}
+              <a
+                href="https://mapmyvisitors.com/web/1c9gj"
+                target="_blank"
+                rel="noreferrer"
+              >
+                MapMyVisitors
+              </a>
+              . The widget starts counting from its installation date.
+            </p>
+          </div>
         </section>
       </main>
 
