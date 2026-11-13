@@ -7,6 +7,10 @@ test("exports the academic CV as a complete static page", async () => {
 
   assert.match(html, /<title>Saqib Mehdi \| GNSS &amp; Urban Atmospheric Sensing<\/title>/i);
   assert.match(html, /<h1>Saqib Mehdi<\/h1>/i);
+  assert.match(html, /href="#home"[^>]*>\s*About\s*</);
+  assert.match(html, /href="#selected-research"[^>]*>Work<\/a>/);
+  assert.match(html, /href="#software"[^>]*>Software &amp; IP<\/a>/);
+  assert.match(html, /href="#visitors"[^>]*>Visitors<\/a>/);
   assert.match(html, /id="publications"/i);
   assert.match(html, /id="software"/i);
   assert.match(html, />Software &amp; Intellectual Property</i);

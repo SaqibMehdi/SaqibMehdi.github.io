@@ -233,15 +233,15 @@ export default function Home() {
 
           <div className="site-links">
             <a className="active" href="#home">
-              about
+              About
             </a>
-            <a href="#selected-research">work</a>
-            <a href="#software">software &amp; IP</a>
-            <a href="#publications">publications</a>
-            <a href="#experience">experience</a>
-            <a href="#visitors">visitors</a>
+            <a href="#selected-research">Work</a>
+            <a href="#software">Software &amp; IP</a>
+            <a href="#publications">Publications</a>
+            <a href="#experience">Experience</a>
+            <a href="#visitors">Visitors</a>
             <a href="/saqib-mehdi-cv.pdf" download>
-              cv
+              CV
             </a>
             <button
               type="button"
