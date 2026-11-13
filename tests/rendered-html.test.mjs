@@ -11,6 +11,8 @@ test("exports the academic CV as a complete static page", async () => {
   assert.match(html, /href="#selected-research"[^>]*>Work<\/a>/);
   assert.match(html, /href="#software"[^>]*>Software &amp; IP<\/a>/);
   assert.match(html, /href="#visitors"[^>]*>Visitors<\/a>/);
+  assert.doesNotMatch(html, /Explore GNSS RayLab/i);
+  assert.doesNotMatch(html, /aria-label="Core research areas"/i);
   assert.match(html, /id="publications"/i);
   assert.match(html, /id="software"/i);
   assert.match(html, />Software &amp; Intellectual Property</i);

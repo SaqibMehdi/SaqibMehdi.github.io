@@ -279,9 +279,6 @@ export default function Home() {
                 atmospheric information.
               </p>
               <div className="hero-actions" aria-label="Featured links">
-                <a className="primary-action" href="#software">
-                  Explore GNSS RayLab
-                </a>
                 <a className="secondary-action" href="/saqib-mehdi-cv.pdf" download>
                   Download CV
                 </a>
@@ -289,11 +286,6 @@ export default function Home() {
                   Contact
                 </a>
               </div>
-              <ul className="focus-list" aria-label="Core research areas">
-                <li>Urban GNSS &amp; PPP</li>
-                <li>3D ray tracing</li>
-                <li>Atmospheric sensing</li>
-              </ul>
             </div>
             <img
               className="portrait"

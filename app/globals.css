@@ -248,40 +248,6 @@ video {
   font-weight: 500;
 }
 
-.hero-actions .primary-action {
-  border-color: var(--link);
-  background: var(--link);
-  color: #ffffff;
-}
-
-.hero-actions .primary-action:hover,
-.hero-actions .primary-action:focus-visible {
-  border-color: var(--link-hover);
-  background: var(--link-hover);
-  color: #ffffff;
-}
-
-.focus-list {
-  margin: 17px 0 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px 16px;
-  color: var(--subtle);
-  font-size: 11px;
-  list-style: none;
-}
-
-.focus-list li {
-  margin: 0;
-}
-
-.focus-list li::before {
-  content: "•";
-  margin-right: 7px;
-  color: var(--link);
-}
-
 .portrait {
   width: 185px;
   height: 250px;
